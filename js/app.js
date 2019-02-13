@@ -16,20 +16,16 @@ const keyBox =  document.getElementById('keyBox');
 const playObj = {Q, W, E, A, S, D, Z, X, C};
 
 keyBox.addEventListener('click', event => playObj[event.target.firstElementChild.id].play()); //console.log(event.target.firstElementChild.id)
-window.addEventListener('keypress', buttonPress.bind(this, event) ); //playObj[String.fromCharCode(event.keyCode).toUpperCase()].play()
+window.addEventListener('keydown', buttonPress.bind(this, event) ); //playObj[String.fromCharCode(event.keyCode).toUpperCase()].play()
+window.addEventListener('keyup', buttonRelease.bind(this, event) )
 
-// var alertText = function(text) {
-// var event = this.event;
-// alert(text);
-// };
-
-//document.getElementById('someelem').addEventListener('click', alertText.bind(this, 'hello'));
 function buttonPress(event){
-  // playObj[String.fromCharCode(event.keyCode).toUpperCase()].play()
-  console.log(this.event.keyCode);
-  //console.log(document.getElementById(`${String.fromCharCode(this.event.keyCode).toUpperCase()}`)); //.parentElement.classList.toggle('pressedBtn');
-  const drumPad = document.getElementById(`${String.fromCharCode(this.event.keyCode).toUpperCase()}`).parentElement.classList
+  playObj[String.fromCharCode(this.event.keyCode).toUpperCase()].play()
+  const drumPad = document.getElementById(`${String.fromCharCode(this.event.keyCode).toUpperCase()}`).parentElement.classList;
   drumPad.toggle('pressedBtn');
-  setTimeout( ()=>  drumPad.toggle('pressedBtn') , 200);
 }
-// console.log(String.fromCharCode(event.keyCode).toUpperCase())
+function buttonRelease(event){
+  console.log(String.fromCharCode(this.event.keyCode))
+  const drumPad1 = document.getElementById(`${String.fromCharCode(this.event.keyCode).toUpperCase()}`).parentElement.classList;
+  drumPad1.toggle('pressedBtn');
+}
