@@ -14,18 +14,29 @@ const C = document.getElementById('C');
 
 const keyBox =  document.getElementById('keyBox');
 const playObj = {Q, W, E, A, S, D, Z, X, C};
-
+const drumPadArr = ['Q', 'W', 'E', 'A', 'S', 'D', 'Z', 'X', 'C'];
+let isReleased = true;
 keyBox.addEventListener('click', event => playObj[event.target.firstElementChild.id].play()); //console.log(event.target.firstElementChild.id)
 window.addEventListener('keydown', buttonPress.bind(this, event) ); //playObj[String.fromCharCode(event.keyCode).toUpperCase()].play()
 window.addEventListener('keyup', buttonRelease.bind(this, event) )
-
+window.addEventListener('blur', removePressedBtnClass);
 function buttonPress(event){
-  playObj[String.fromCharCode(this.event.keyCode).toUpperCase()].play()
-  const drumPad = document.getElementById(`${String.fromCharCode(this.event.keyCode).toUpperCase()}`).parentElement.classList;
-  drumPad.toggle('pressedBtn');
+  if(drumPadArr.includes(String.fromCharCode(this.event.keyCode).toUpperCase())){
+    playObj[String.fromCharCode(this.event.keyCode).toUpperCase()].play()
+    const drumPad = document.getElementById(`${String.fromCharCode(this.event.keyCode).toUpperCase()}`).parentElement.classList;
+    drumPad.toggle('pressedBtn');
+    isReleased = false;
+  }
 }
 function buttonRelease(event){
-  console.log(String.fromCharCode(this.event.keyCode))
-  const drumPad1 = document.getElementById(`${String.fromCharCode(this.event.keyCode).toUpperCase()}`).parentElement.classList;
-  drumPad1.toggle('pressedBtn');
+
+  if(drumPadArr.includes(String.fromCharCode(this.event.keyCode).toUpperCase())){
+    console.log(String.fromCharCode(this.event.keyCode))
+    const drumPad1 = document.getElementById(`${String.fromCharCode(this.event.keyCode).toUpperCase()}`).parentElement.classList;
+    drumPad1.toggle('pressedBtn');
+  }
+}
+function removePressedBtnClass(){
+  console.log('blur')
+  drumPadArr.forEach((el)=>document.getElementById(`${el}`).parentElement.classList.remove('pressedBtn'))
 }
