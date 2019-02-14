@@ -1,23 +1,4 @@
-#A{
-}
-#C{
-}
-#D{
-}
-#E{
-}
-#Q{
-}
-#S{
-}
-#W{
-}
-#X{
-}
-#Z{
-}
-#display{
-}
+
 #drum-machine{
   margin-left: auto;
   margin-right: auto;
@@ -33,6 +14,7 @@
 #keyBox{
   margin-left: 20px;
   margin-top: 22px;
+  margin-bottom: 22px;
   height: 300px;
   width: 300px;
 }
@@ -70,7 +52,23 @@
 .pressedBtn{
   background-color: grey;
 }
-
 .topRow{
-  margin-left: 100px;
+  margin-left: 4px;
+}
+#display{
+  background-color: white;
+  border: 1px solid black;
+  position: relative;
+  bottom: 290px;
+  left: 400px;
+  height: 50px;
+  width: 100px;
+}
+.displayNotUsed{
+  padding: 14px 5px 14px 5px;
+}
+.displayInUse{
+  text-align: center;
+  font-weight: bold;
+  padding: 5px;
 }
